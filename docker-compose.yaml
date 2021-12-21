@@ -2,14 +2,26 @@ version: "3.9"
 
 services:
   nginx:
-    image: jumasta/nginx:1.0
+    image: jumasta/nginx:cert
+
+    volumes:
+      - ./nginx/data/nginx:/etc/nginx/conf.d
+      - ./nginx/data/certbot/conf:/etc/letsencrypt
+      - ./nginx/data/certbot/www:/var/www/certbot
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'" 
     ports:
       - "80:80"
-      - "443:443"
+      - "443:443"  
   certbot:
-    image: certbot/certbot    
+    image: certbot/certbot
+    volumes:
+      - ./nginx/data/certbot/conf:/etc/letsencrypt
+      - ./nginx/data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"   
   frontend:
-    image: jumasta/frontend:1.0
+    image: jumasta/frontend:cert
+    env_file:
+       - frontend.env
   api:
     image: jumasta/api:1.0
       
