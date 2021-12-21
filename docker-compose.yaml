@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  nginx:
+    image: jumasta/nginx:1.0
+    ports:
+      - "80:80"
+      - "443:443"
+  certbot:
+    image: certbot/certbot    
+  frontend:
+    image: jumasta/frontend:1.0
+  api:
+    image: jumasta/api:1.0
+      
+  
