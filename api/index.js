@@ -56,7 +56,7 @@ app.get('/api/catalog/:id', express.json(), function (req, res) {
   try {
     const { id } = req.params;
     const catalog = catalogs.filter(p => p.id === id);
-    console.log(request.headers['x-forwarded-for'] )
+    console.log(request.headers['x-forwarded-for'])
     if (catalog.length === 0) {
       res.status(404).json({
         error: 'Object not found'
