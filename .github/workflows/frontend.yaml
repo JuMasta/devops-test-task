@@ -1,10 +1,11 @@
 name: frontend build push
 
 on:
-  push:
-    branches: [ main ]
+  create:
+    tags:
+      - v1.*
     paths:
-      - 'frontend/**'  
+      - 'frontend/**' 
     
 
 
