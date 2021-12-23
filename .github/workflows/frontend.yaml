@@ -2,9 +2,10 @@ name: frontend build push
 
 on:
   push:
-    paths:
-      - './frontend'  
     branches: [ main ]
+    paths:
+      - './frontend/'  
+    
 
 
 jobs:
