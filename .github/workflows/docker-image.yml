@@ -1,10 +1,11 @@
 name: nginx build push
 
 on:
-  push:
-    branches: [ main ]
+  create:
+    tags:
+      - v1.*
     paths:
-     - 'nginx/**' 
+      - 'frontend/**'
 
 
 jobs:
