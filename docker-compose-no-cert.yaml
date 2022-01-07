@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   nginx:
-    image: jumasta/nginx:1.0
+    image: jumasta/nginx:no-cert
     ports:
       - "80:80"    
   frontend:
